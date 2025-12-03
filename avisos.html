@@ -83,7 +83,10 @@
       <a class="drawer-item" href="index.html">Início</a>
       <a class="drawer-item" href="avisos.html">Avisos</a>
       <a class="drawer-item" href="painel.html">Fila</a>
+      <a class="drawer-item" href="consulta-fila.html">🔍 Consultar Fila</a>
+      <a class="drawer-item" href="cadastro.html" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 800;">📋 Cadastro na Fila</a>
 
+      <a class="drawer-item" href="#" onclick="event.preventDefault(); mostrarDuvidasDocumentos(); document.getElementById('sideDrawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('show');">📄 Dúvidas sobre Documentos</a>
       <a class="drawer-item" href="mailto:odontologiajaperi@gmail.com">Contato (e-mail)</a>
     </nav>
   </aside>
@@ -115,8 +118,9 @@
       const mo = new MutationObserver(()=>{ hideOtherOverlays(); setExpanded(drawer.classList.contains('open')); });
       mo.observe(drawer, { attributes:true, attributeFilter:['class'] });
     })();
-  </script>
+</script>
 
   
+  <script src="modal-documentos.js"></script>
 </body>
 </html>

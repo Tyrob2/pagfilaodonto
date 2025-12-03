@@ -108,26 +108,27 @@
     </header>
 
     <main>
-      <section class="hero-card action-card" data-target="painel.html" aria-labelledby="welcomeTitle">
+      <section class="hero-card" aria-labelledby="welcomeTitle">
         <div class="hero-content">
-          <h2 id="welcomeTitle">Bem-vindo ao Painel de Saúde Bucal</h2>
-          <p class="lead">Acompanhe o total de pacientes em espera e os agendamentos. Em breve será possível entrar na fila pelo site.</p>
-
-          <div style="margin-top:16px; display:flex; gap:18px; align-items:center;">
-            <div>
-              <div class="muted" style="font-size:12px">Em espera — acumulado geral</div>
-              <div id="homeGeral" class="big-number big1">—</div>
-            </div>
-            <div>
-              <div class="muted" style="font-size:12px">Agendados (total)</div>
-              <div id="homeAg" class="big-number big2">—</div>
-            </div>
-          </div>
+          <h2 id="welcomeTitle">Bem-vindo ao Sistema de Fila de Espera Odontológica</h2>
+          <p class="lead">Gerencie sua posição na fila de atendimento odontológico de Japeri. Cadastre-se, consulte sua posição e acompanhe seu agendamento.</p>
         </div>
 
         <div class="hero-illustration" aria-hidden="true">
           <img src="brasil-sorridente-logo.png" alt="Brasil Sorridente">
         </div>
+      </section>
+
+      <!-- Card de Destaque: Consultar Fila -->
+      <section class="highlight-card action-card" data-target="consulta-fila.html" aria-labelledby="consultaTitle" style="background: linear-gradient(135deg, #1DC56F 0%, #0F8BD6 100%); border-color: #1DC56F;">
+          <h3 id="consultaTitle" style="color: white;">🔍 Consulte seu Lugar na Fila!</h3>
+          <p class="lead" style="color: rgba(255,255,255,0.95);">Já está cadastrado? Verifique sua posição na fila de espera digitando seu CPF. <strong style="color: white;">Clique aqui para consultar agora!</strong></p>
+      </section>
+
+      <!-- Card de Destaque: Cadastro na Fila -->
+      <section class="highlight-card action-card" data-target="cadastro.html" aria-labelledby="cadastroTitle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-color: #667eea;">
+          <h3 id="cadastroTitle" style="color: white;">📋 Faça seu Cadastro na Fila!</h3>
+          <p class="lead" style="color: rgba(255,255,255,0.95);">Entre na fila de espera para atendimento odontológico. O cadastro é rápido e simples. <strong style="color: white;">Clique aqui para se cadastrar agora!</strong></p>
       </section>
 
       <section class="highlight-card action-card" data-target="avisos.html" aria-labelledby="avisosTitle">
@@ -147,7 +148,30 @@
 
         <div class="card">
           <h3>Dúvidas?</h3>
-          <p class="muted small">Entre em contato: <a href="mailto:odontologiajaperi@gmail.com">odontologiajaperi@gmail.com</a></p>
+          <p class="muted">Entre em contato: <a href="mailto:odontologiajaperi@gmail.com">odontologiajaperi@gmail.com</a></p>
+        </div>
+      </section>
+
+      <!-- Card de Destaque: Dúvidas sobre Documentos -->
+      <section class="highlight-card action-card" onclick="mostrarDuvidasDocumentos()" aria-labelledby="duvidasTitle" style="background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); border-color: #ffc107; cursor: pointer; margin-top: 30px;">
+          <h3 id="duvidasTitle" style="color: white;">📄 Dúvidas sobre Documentos?</h3>
+          <p class="lead" style="color: rgba(255,255,255,0.95);">Saiba quais documentos você precisa levar no dia do atendimento. <strong style="color: white;">Clique aqui para ver a lista completa!</strong></p>
+      </section>
+
+      <!-- Estatísticas -->
+      <section style="margin-top: 40px;">
+        <h3 class="sectionTitle">📊 Estatísticas do Sistema</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+          <div class="bigcard">
+            <div class="bigcard-title">Em Espera</div>
+            <div id="homeGeral" class="big-number big1">—</div>
+            <div class="bigcard-foot">Total acumulado geral</div>
+          </div>
+          <div class="bigcard">
+            <div class="bigcard-title">Agendados</div>
+            <div id="homeAg" class="big-number big2">—</div>
+            <div class="bigcard-foot">Total de agendamentos</div>
+          </div>
         </div>
       </section>
     </main>
@@ -168,7 +192,10 @@
       <a class="drawer-item" href="index.html">Início</a>
       <a class="drawer-item" href="avisos.html">Avisos</a>
       <a class="drawer-item" href="painel.html">Fila</a>
+      <a class="drawer-item" href="consulta-fila.html">🔍 Consultar Fila</a>
+      <a class="drawer-item" href="cadastro.html" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 800;">📋 Cadastro na Fila</a>
 
+      <a class="drawer-item" href="#" onclick="event.preventDefault(); mostrarDuvidasDocumentos(); document.getElementById('sideDrawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('show');">📄 Dúvidas sobre Documentos</a>
       <a class="drawer-item" href="mailto:odontologiajaperi@gmail.com">Contato (e-mail)</a>
     </nav>
   </aside>
@@ -266,7 +293,7 @@
       const mo = new MutationObserver(()=>{ hideOtherOverlays(); setExpanded(drawer.classList.contains('open')); });
       mo.observe(drawer, { attributes:true, attributeFilter:['class'] });
     })();
-  </script>
+</script>
 
   <script>
     (function(){
@@ -300,3 +327,8 @@
         }
       });
     })();
+
+  </script>
+  <script src="modal-documentos.js"></script>
+</body>
+</html>
